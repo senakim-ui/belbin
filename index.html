@@ -24,8 +24,11 @@ h1{font-size:17px;font-weight:600;margin-bottom:1.25rem;color:#1a1a1a}
 .fb.f-quiz.active{background:#f0ece4;color:#3a2e1e}
 .fb.f-observer.active{background:#fff0e0;color:#7a4500}
 .fb.f-growth.active{background:#edf7e6;color:#1a5c06}
-.quiz-ans{display:none;padding:.75rem 1rem 1rem .9rem;border-top:1px solid #f0ede6}
-.qa-card.open .quiz-ans{display:block}
+.quiz-ans{display:flex;align-items:center;padding:.1rem .9rem .65rem 2.6rem;border-top:none;gap:8px}
+.qa-card[data-tags*="quiz"]{cursor:default}
+.qa-card[data-tags*="quiz"]:hover{border-color:#e8e5de}
+.qa-card[data-tags*="quiz"] .qa-icon{display:none}
+.qa-card[data-tags*="quiz"] .qa-q{padding:.6rem .9rem .3rem}
 .role-tag{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;padding:5px 14px;border-radius:8px;margin-bottom:.4rem}
 .num-tag{font-size:10px;color:#bbb;font-weight:500;margin-right:4px}
 .official-box{background:#fffdf7;border:1px solid #e8e0cc;border-radius:8px;padding:.7rem .9rem;margin-top:.75rem;font-size:12.5px;color:#3a3020;line-height:1.75}
@@ -417,6 +420,7 @@ h1{font-size:17px;font-weight:600;margin-bottom:1.25rem;color:#1a1a1a}
 
 <script>
 function toggle(card){
+  if((card.dataset.tags||'').includes('quiz')) return;
   card.classList.toggle('open');
   var ans=card.querySelector('.quiz-ans');
   if(ans) ans.style.display=card.classList.contains('open')?'block':'none';
